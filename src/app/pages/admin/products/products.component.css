@@ -1,0 +1,15 @@
+.prod_card{
+ position: relative;
+}
+.prod_card .card-title{
+    font-size: 16px;
+}
+.prod_card .card-body{
+    height:130px;
+    max-height:130px;
+    overflow: hidden;
+}
+.prod_card h5{
+   font-size: 14px;
+   font-weight: 600;
+}

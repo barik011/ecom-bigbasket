@@ -1,0 +1,100 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div [ngClass]="isSidePanelVisible?'col-8':'col-12'">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between"><span>Lsit of
+                        Product</span><button type="button" (click)="openSidePanel()" class="btn btn-success">Add
+                        Product</button></div>
+                <div class="card-body">
+                    <div class="row">
+                        @for (item of productList; track $index) {
+                            <div class="col-3 mb-4">
+                                <div class="card prod_card">
+                                    <img class="card-img-top" height="150" [src]=item.productImageUrl alt="Card image">
+                                    <div class="card-body">
+                                      <h4 class="card-title">{{item.productName}}</h4>
+                                      <p class="card-text">{{item.productDescription}}</p>
+                                      <h5 class="text-center">$ {{item.productPrice}}</h5>
+                            
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-between ">
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                        <button type="button" class="btn btn-success">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isSidePanelVisible" class="col-4">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between"><span>Add
+                        Product</span><button type="button" (click)="closeSidePanel()"
+                        class="btn btn-danger">Close</button></div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Product SKU:</label>
+                            <input type="text" [(ngModel)]="productObj.productSku" name="productSku"
+                                class="form-control" />
+                        </div>
+                        <div class="col-6">
+                            <label>Product Name:</label>
+                            <input type="text" [(ngModel)]="productObj.productName" name="productName"
+                                class="form-control" />
+                        </div>
+
+                        <div class="col-6">
+                            <label>Product Price:</label>
+                            <input type="number" [(ngModel)]="productObj.productPrice" name="productPrice"
+                                class="form-control" />
+                        </div>
+
+                        <div class="col-6">
+                            <label>Product Short Name:</label>
+                            <input type="text" [(ngModel)]="productObj.productShortName" name="productShortName"
+                                class="form-control" />
+                        </div>
+
+                        <div class="col-6">
+                            <label>Categories:</label>
+                            <select class="form-select" [(ngModel)]="productObj.CategoryId">
+                                @for (item of categoryList; track $index) {
+                                    <option value={item.categoryId} >{{item.categoryName}}</option>
+                                }
+                                
+                            </select>
+                            
+                        </div>
+                        <div class="col-6">
+                            <label>Delivery Time:</label>
+                            <input type="text" [(ngModel)]="productObj.DeliveryTimeSpan" name="DeliveryTimeSpan"
+                                class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label>Product Image URL:</label>
+                            <input type="text" [(ngModel)]="productObj.ProductImageUrl" name="ProductImageUrl"
+                                class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label>Product Description:</label>
+                            <textarea [(ngModel)]="productObj.productDescription" name="productDescription"
+                                class="form-control"></textarea>
+                        </div>
+
+                       
+
+                       
+                        <div class="col-12 mt-2 text-end">
+                            <button type="submit" class="btn btn-primary" (click)="saveProduct()">Submit</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
