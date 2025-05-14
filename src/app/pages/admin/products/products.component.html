@@ -7,18 +7,18 @@
                         Product</button></div>
                 <div class="card-body">
                     <div class="row">
-                        @for (item of productList; track $index) {
+                        @for (prod of productList; track $index) {
                             <div class="col-3 mb-4">
                                 <div class="card prod_card">
-                                    <img class="card-img-top" height="150" [src]=item.productImageUrl alt="Card image">
+                                    <img class="card-img-top" height="150" [src]='imgUrl' alt="Card image">
                                     <div class="card-body">
-                                      <h4 class="card-title">{{item.productName}}</h4>
-                                      <p class="card-text">{{item.productDescription}}</p>
-                                      <h5 class="text-center">$ {{item.productPrice}}</h5>
+                                      <h4 class="card-title">{{prod.productName}}</h4>
+                                      <p class="card-text">{{prod.productDescription}}</p>
+                                      <h5 class="text-center">$ {{prod.productPrice}}</h5>
                             
                                     </div>
                                     <div class="card-footer d-flex justify-content-between ">
-                                        <button type="button" class="btn btn-primary">Edit</button>
+                                        <button type="button" class="btn btn-primary" (click)="onEdit(prod)">Edit</button>
                                         <button type="button" class="btn btn-success">Save</button>
                                     </div>
                                 </div>
@@ -62,8 +62,8 @@
                         <div class="col-6">
                             <label>Categories:</label>
                             <select class="form-select" [(ngModel)]="productObj.CategoryId">
-                                @for (item of categoryList; track $index) {
-                                    <option value={item.categoryId} >{{item.categoryName}}</option>
+                                @for (cate of categoryList; track $index) {
+                                    <option [value]="cate.categoryId" >{{cate.categoryName}}</option>
                                 }
                                 
                             </select>
@@ -89,7 +89,8 @@
 
                        
                         <div class="col-12 mt-2 text-end">
-                            <button type="submit" class="btn btn-primary" (click)="saveProduct()">Submit</button>
+                            <button type="submit" *ngIf="productObj.productId==0" class="btn btn-primary" (click)="saveProduct()">Submit</button>
+                            <button type="submit" *ngIf="productObj.productId!==0" class="btn btn-primary" (click)="updateProduct()">Update</button>
                         </div>
                     </div>
                     

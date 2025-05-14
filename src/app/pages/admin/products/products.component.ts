@@ -25,15 +25,12 @@ export class ProductsComponent implements OnInit {
     "ProductImageUrl": "",
     "UserId": 0
   }
-  categoryObj:any= {
-    "categoryId": 0,
-    "categoryName": "",
-    "parentCategoryId": 0,
-    "userId": null
-  }
+
   isSidePanelVisible:boolean=false;
   categoryList:any[]=[];
   productList:any[]=[];
+
+  imgUrl:string='/assets/user1.jpg'
 
 
   constructor( private prodServ:ProductService){}
@@ -74,16 +71,43 @@ ngOnInit(): void {
   }
   saveProduct(){
     debugger;
-    this.prodServ.addProduct_Ser(this.productObj).subscribe((res:any)=>{
-      if(res.result){
-        this.productList=res.data;
-        alert("Product Successfully Added!");
-        this.getAllProduct();
-      }
-      else{
-        alert(res.message);
-      }
-      
+    this.prodServ.addProduct_Ser(this.productObj).subscribe({
+      next: (res: any) => {
+        if (res.result) {
+          this.productList = res.data;
+          alert("Product Successfully Added!");
+          this.getAllProduct(); // Refresh product list
+        } else {
+          alert(res.message); // Show API response error
+        }
+      },
+      error: (err) => {
+        console.error("API Error:", err);
+        alert("Failed to add product. Please try again!");
+      }     
+    })
+  }
+  onEdit(prod:any){
+    this.productObj = prod;
+    this.openSidePanel();
+  }
+
+  updateProduct(){
+    debugger;
+    this.prodServ.updateProduct_Ser(this.productObj).subscribe({
+      next: (res: any) => {
+        if (res.result) {
+          this.productList = res.data;
+          alert("Product Successfully Updated!");
+          this.getAllProduct(); // Refresh product list
+        } else {
+          alert(res.message); // Show API response error
+        }
+      },
+      error: (err) => {
+        console.error("API Error:", err);
+        alert("Failed to Updated product. Please try again!");
+      }     
     })
   }
 

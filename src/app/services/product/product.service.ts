@@ -19,4 +19,7 @@ export class ProductService {
   addProduct_Ser(prod:any){
     return this.http.post(Constant.API_END_POINT + Constant.METHODS.CREATE_PRODUCT,prod);
   }
+  updateProduct_Ser(prod:any){
+    return this.http.post(Constant.API_END_POINT + Constant.METHODS.UPDATE_PRODUCT,prod);
+  }
 }
