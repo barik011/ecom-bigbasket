@@ -49,8 +49,8 @@ ngOnInit(): void {
   getAllCategory(){
     this.prodServ.getAllCategories_Ser().subscribe((res:any)=>{
       debugger;
-      if(res.data){
-        this.categoryList= res.data
+      if(res){
+        this.categoryList= res
       }
       else{
         alert("Category API not valid")
@@ -60,8 +60,8 @@ ngOnInit(): void {
   }
   getAllProduct(){
     this.prodServ.getAllProducts_Ser().subscribe((res:any)=>{
-      if(res.data){
-        this.productList= res.data
+      if(res){
+        this.productList= res
       }
       else{
         alert(res.message)
@@ -74,7 +74,7 @@ ngOnInit(): void {
     this.prodServ.addProduct_Ser(this.productObj).subscribe({
       next: (res: any) => {
         if (res.result) {
-          this.productList = res.data;
+          this.productList = res;
           alert("Product Successfully Added!");
           this.getAllProduct(); // Refresh product list
         } else {
@@ -97,7 +97,7 @@ ngOnInit(): void {
     this.prodServ.updateProduct_Ser(this.productObj).subscribe({
       next: (res: any) => {
         if (res.result) {
-          this.productList = res.data;
+          this.productList = res;
           alert("Product Successfully Updated!");
           this.getAllProduct(); // Refresh product list
         } else {
