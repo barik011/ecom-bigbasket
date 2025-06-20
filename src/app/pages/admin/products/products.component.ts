@@ -77,7 +77,7 @@ ngOnInit(): void {
           res.productId = this.productList.length + 1
           this.productList = res;
           alert("Product Successfully Added!");
-          this.getAllProduct(); // Refresh product list
+          this.getAllProduct(); 
         } else {
           alert(res.message); // Show API response error
         }
