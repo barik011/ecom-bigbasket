@@ -74,6 +74,7 @@ ngOnInit(): void {
     this.prodServ.addProduct_Ser(this.productObj).subscribe({
       next: (res: any) => {
         if (res.result) {
+          res.productId = this.productList.length + 1
           this.productList = res;
           alert("Product Successfully Added!");
           this.getAllProduct(); // Refresh product list
@@ -97,6 +98,7 @@ ngOnInit(): void {
     this.prodServ.updateProduct_Ser(this.productObj).subscribe({
       next: (res: any) => {
         if (res.result) {
+          
           this.productList = res;
           alert("Product Successfully Updated!");
           this.getAllProduct(); // Refresh product list

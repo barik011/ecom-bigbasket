@@ -10,7 +10,7 @@
                         @for (prod of productList; track $index) {
                             <div class="col-3 mb-4">
                                 <div class="card prod_card">
-                                    <img class="card-img-top" height="150" [src]='imgUrl' alt="Card image">
+                                    <img class="card-img-top" height="150" [src]='prod.ProductImageUrl' alt="Card image">
                                     <div class="card-body">
                                       <h4 class="card-title">{{prod.productName}}</h4>
                                       <p class="card-text">{{prod.productDescription}}</p>
